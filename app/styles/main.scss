@@ -1,0 +1,235 @@
+// bower:scss
+@import "bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
+@import "bower_components/font-awesome/scss/font-awesome.scss";
+@import "bower_components/neat/app/assets/stylesheets/_neat.scss";
+// endbower
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  font-size: $em-base;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #f6881d;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+
+.wrapper {
+  @include outer-container;
+}
+
+
+.main-nav-container {
+  @include clearfix;
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  background-color: #2d2d2f;
+}
+
+.main-nav {
+  .main-nav--item {
+    float: left;
+    width: 14.28571428571429%;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 18px;
+    &:hover {
+      &:after {
+        @include triangle(22px, #2d2d2f, down);
+        content: ' ';
+        position: absolute;
+        margin-left: -10px;
+      }
+    }
+    > a {
+      display: block;
+      padding: 21px 0;
+      border-left: solid #2d2d2f 1px;
+      border-right: solid #2d2d2f 1px;
+      color: #fff;
+      text-shadow: -2px -2px rgba(0,0,0,0.75);
+      &:hover {
+        border-left: solid #363737 1px;
+        border-right: solid #363737 1px;
+        background-color: #232326;
+        box-shadow: inset 0px 0px 17px 1px rgba(0,0,0,0.75);
+        text-decoration: none;
+      }
+    }
+    &.active {
+      &:after {
+        @include triangle(22px, #2d2d2f, down);
+        content: ' ';
+        position: absolute;
+        margin-left: -10px;
+      } 
+      > a {
+        border-left: solid #363737 1px;
+        border-right: solid #363737 1px;
+        background-color: #232326;
+        box-shadow: inset 0px 0px 17px 1px rgba(0,0,0,0.75);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.main-nav-sub-item {
+  @include outer-container;
+  display: none;
+  position: absolute;
+  width: 80%;
+  margin: 0 0 0 -40%;
+  padding: 15px 15px 0 15px;
+  left: 50%;
+  background-color: #eef2f0;
+  text-align: left;
+}
+
+.nav-banner-block {
+  img {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.menu--slot {
+  @include span-columns(3);
+  @include omega(4n);
+  position: relative;
+  min-height: 450px;
+  margin-bottom: 15px;
+  padding: 20px 15px;
+  background-color: #fafafc;
+
+  h3 {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    border-bottom: solid #232326 6px;
+    font-size: 17px;
+    line-height: 17px;
+    color: #575757;
+    text-align: center;
+    text-transform: uppercase;
+    i {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+  }
+
+  .menu-slot--nav {
+    padding-left: 20px;
+    li {
+      margin-bottom: 10px;
+      list-style: disc;
+      font-size: 16px;
+      color: #f6881d;
+    }  
+  }
+
+  .menu-slot--img {
+    position: absolute;
+    width: 100%;
+    padding: 15px 15px 10px 15px;
+    left: 0;
+    bottom: 0;
+    font-size: 16px;
+    color: #575757;
+    img {
+      width: 100%;
+      margin-top: 15px;
+      border: solid #e2e2e1 6px;
+    }
+  }
+}
+
+// tab
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .main-nav {
+    .main-nav--item {
+      float: none;
+      width: 100%;
+      &:hover {
+        &:after {
+          display: none;
+        }
+      }
+      > a {
+        padding: 20px 45px;
+        border-bottom: solid #363737 1px;
+      }
+    }
+  }
+
+  .main-nav-sub-item {
+    position: relative;
+    width: 100%;
+    margin: 0 0 0 0;
+    left: 0;
+  }
+
+  .menu--slot {
+    @include span-columns(6);
+    @include omega(2n);
+    min-height: 650px;
+  }
+}
+
+// mobile
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .main-nav {
+    .main-nav--item {
+      float: none;
+      width: 100%;
+      text-align: left;
+      &:hover {
+        &:after {
+          display: none;
+        }
+      }
+      > a {
+        padding: 20px 45px;
+        border-bottom: solid #363737 1px;
+      }
+    }
+  }
+
+  .main-nav-sub-item {
+    position: relative;
+    width: 100%;
+    margin: 0 0 0 0;
+    left: 0;
+  }
+
+  .menu--slot {
+    @include span-columns(6);
+    @include omega(2n);
+    min-height: 450px;
+  }
+}
