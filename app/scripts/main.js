@@ -5,8 +5,24 @@ window.onload = function() {
   var subMenu = null;
   var mainMenu = document.getElementById('menu');
 
-  mainMenu.onmouseover = function(event) {
+  var bind = function(element, eventName, callback) {
+    if (element.addEventListener) {
+      element.addEventListener(eventName, callback);
+    } else {
+      element.attachEvent('on' + eventName, callback);
+    }
+  };
 
+  var removeClass = function(element, className) {
+    element.className = element.className.replace(className, '');
+  };
+
+  var addClass = function(element, className) {
+    removeClass(element, className);
+    element.className = element.className + ' ' + className;
+  };
+
+  bind(mainMenu, 'mouseover', function(event) {
     if (currentElem) {
       return;
     }
@@ -19,7 +35,7 @@ window.onload = function() {
     if (target === this) { return; }
 
     currentElem = target;
-    target.classList.add('active');
+    addClass(target, 'active');
 
     var currentNodes = currentElem.childNodes;
     for (var i = 0; i < currentNodes.length; i++) {
@@ -29,10 +45,9 @@ window.onload = function() {
       }
     }
 
-  };
+  });
 
-
-  mainMenu.onmouseout = function(event) {
+  bind(mainMenu, 'mouseout', function(event) {
     if (!currentElem) { return; }
 
     var relatedTarget = event.relatedTarget;
@@ -43,10 +58,10 @@ window.onload = function() {
       }
     }
 
-    currentElem.classList.remove('active');
+    removeClass(currentElem, 'active');
     currentElem = null;
 
     subMenu.style.display = 'none';
-  };
+  });
 
 };
